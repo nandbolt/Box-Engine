@@ -107,6 +107,10 @@ function BEBox(_owner=other.id) constructor
 	
 	#endregion
 	
+	/// @func	hasFiniteMass();
+	/// @desc	Returns whether the box has finite mass.
+	static hasFiniteMass = function(){ return inverseMass >= 0; }
+	
 	/// @func	clearNetForce();
 	/// @desc	Clears all of the net forces acting on the box.
 	static clearNetForce = function()
