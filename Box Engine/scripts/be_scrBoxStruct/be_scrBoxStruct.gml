@@ -107,6 +107,26 @@ function BEBox(_owner=other.id) constructor
 	
 	#endregion
 	
+	/// @func	clearNetForce();
+	/// @desc	Clears all of the net forces acting on the box.
+	static clearNetForce = function()
+	{
+		netForce.x = 0;
+		netForce.y = 0;
+	}
+	
+	/// @func	addForce({real} x, {real} y);
+	/// @desc	Adds the given force to the net forces acting on the box.
+	static addForce = function(_x, _y)
+	{
+		netForce.x += _x;
+		netForce.y += _y;
+	}
+	
+	/// @func	addForceVector({Struct.BEVector2} v);
+	/// @desc	Adds the given force to the net forces acting on the box.
+	static addForceVector = function(_v){ netForce.addVector(_v); }
+	
 	/// @func	integrate({real} dt);
 	/// @desc	Integrates the box forward in time by the given duration of time. In other words,
 	///			if there are forces acting on the box, it will integrate, or convert the force into
@@ -130,5 +150,8 @@ function BEBox(_owner=other.id) constructor
 		
 		// Apply drag
 		velocity.scale(power(damping, _dt));
+		
+		// Clear forces
+		clearNetForce();
 	}
 }
