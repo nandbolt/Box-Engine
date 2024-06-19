@@ -5,10 +5,14 @@ Keeps track of and updates all boxes in the simulation.
 */
 
 // World
-boxes = [];							// All of the boxes in the simulation.
-registry = new BEForceRegistry();	// The force registry.
-maxContacts = 4;					// The given number of contacts per frame the simulation can handle.
-iterations = maxContacts * 2;		// The number of contact iterations used.
+boxes = [];											// All of the boxes in the simulation.
+maxContacts = 4;									// The given number of contacts per frame the simulation can handle.
+iterations = maxContacts * 2;						// The number of contact iterations used.
+calculateIterations	= (iterations == 0);			// Whether the number of iterations to for contact resolver should be calculated every frame.
+registry = new BEForceRegistry();					// The force registry.
+resolver = new BEContactResolver(4);				// The contact resolver.
+contactGens = [];									// The contact generators.
+contacts = array_create(maxContacts, undefined);	// The list of contacts.
 
 #region Functions
 
@@ -28,7 +32,26 @@ startFrame = function()
 /// @desc	Calls all registered contact generators to report their contacts. Returns number of contacts.
 generateContacts = function()
 {
-	return 1;
+	var _limit = maxContacts;
+	
+	// Init next contact
+	var _nextContactIdx = 0;
+	var _nextContact = contacts[_nextContactIdx];
+	
+	// Loop through contact generators
+	for (var _i = 0; _i < array_length(contactGens); _i++)
+	{
+		// Add contact to contact generator (???)
+		var _used = contactGens[_i].addContact(_nextContact, _limit);
+		_limit -= _used;
+		_nextContactIdx += _used;
+		_nextContact = contacts[_nextContactIdx];
+		
+		// Break if ran out of contacts to fill, meaning we're missing contacts.
+		if (_limit <= 0) break;
+	}
+	
+	return maxContacts - _limit;
 }
 
 /// @func	integrate({real} dt);
@@ -57,6 +80,11 @@ runPhysics = function(_dt)
 	var _usedContacts = generateContacts();
 	
 	// Process contacts
+	if (_usedContacts)
+	{
+		if (calculateIterations) resolver.setIterations(_usedContacts * 2);
+		resolver.resolveContacts(contacts, _usedContacts, _dt);
+	}
 }
 
 #endregion
@@ -66,8 +94,8 @@ window_set_size(1280, 720);
 surface_resize(application_surface, 1280, 720);
 
 // Init scene
-fgGravity1 = new BEGravityForceGen(500, 0);
-fgGravity2 = new BEGravityForceGen(-500, 0);
+fgGravity1 = new BEGravityForceGen();
+fgGravity2 = new BEGravityForceGen();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);
 inst2 = instance_create_layer(room_width * 0.7, room_height * 0.5, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
