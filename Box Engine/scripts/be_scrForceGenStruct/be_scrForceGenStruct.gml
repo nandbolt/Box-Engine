@@ -6,5 +6,5 @@ function BEForceGen() constructor
 	/// @func	updateForce({Struct.BEBox} box, {real} dt);
 	/// @desc	Applies the force generator to the box with the given time. Should be overwritten in
 	///			an inherited force generator.
-	static updateForce = function(){}
+	static updateForce = function(_box, _dt){}
 }
