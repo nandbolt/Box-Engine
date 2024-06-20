@@ -90,4 +90,20 @@ runPhysics = function(_dt)
 	}
 }
 
+/// @func	removeBox({Struct.BEBox} box);
+/// @desc	Removes a box from the simulation.
+removeBox = function(_box)
+{
+	// Loop through boxes
+	for (var _i = 0; _i < array_length(boxes); _i++)
+	{
+		// If found box position
+		if (boxes[_i] == _box)
+		{
+			// Remove box from array
+			array_delete(boxes, _i, 1);
+		}
+	}
+}
+
 #endregion
