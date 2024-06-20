@@ -1,9 +1,9 @@
-/// @func	BETileContactGen();
+/// @func	BETileContactGen({id} tileLayer, {int} tileSize);
 /// @desc	Handles contacts with tiles in the room.
-function BETileContactGen() : BEContactGen() constructor
+function BETileContactGen(_tileLayer=layer_tilemap_get_id("CollisionTiles"), _tileSize=16) : BEContactGen() constructor
 {
-	collisionTiles = layer_tilemap_get_id("CollisionTiles");
-	tileSize = 16;
+	collisionTiles = _tileLayer;
+	tileSize = _tileSize;
 	inverseTileSize = 1 / tileSize;
 	halfTileSize = tileSize * 0.5;
 	
@@ -32,7 +32,7 @@ function BETileContactGen() : BEContactGen() constructor
 					var _owner = boxes[_i].owner;
 					var _x = _owner.bbox_left + _j * (_owner.bbox_right - _owner.bbox_left);
 					var _y = _owner.bbox_top + _k * (_owner.bbox_bottom - _owner.bbox_top);
-					if (tilemap_get_at_pixel(collisionTiles, _x, _y) == 1)
+					if (tilemap_get_at_pixel(collisionTiles, _x, _y) > 0)
 					{
 						// We have a collision (so fill out contact data)
 						_tileCollision = true;
@@ -51,6 +51,11 @@ function BETileContactGen() : BEContactGen() constructor
 							if (_dy > 0) _normal.setY(1);	// Down
 							else _normal.setY(-1);			// Up
 						}
+						
+						// Ignore if there's a tile opposite to the normal
+						if (tilemap_get_at_pixel(collisionTiles, _x + _normal.x * tileSize, _y + _normal.y * tileSize) > 0) continue;
+						
+						// Set normal
 						contacts[_contactIdx].normal.setVector(_normal);
 				
 						// Set everything but interpenetration

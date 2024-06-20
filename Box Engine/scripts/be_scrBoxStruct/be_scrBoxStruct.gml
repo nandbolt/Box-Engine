@@ -1,7 +1,7 @@
-/// @func	BEBox({id} owner);
+/// @func	BEBox({id} owner, {real} mass, {real} damping);
 /// @desc	A point-mass box that is simulated by the Box Engine. It is affected by forces
 ///			produced by force generators and impulses caused by contact generators.
-function BEBox(_owner=other.id) constructor
+function BEBox(_owner=other.id, _mass=1, _damping=0.5) constructor
 {
 	/*
 	The object that this box is parented to. This is where it will get its
@@ -15,11 +15,11 @@ function BEBox(_owner=other.id) constructor
 	acceleration = new BEVector2();
 	netForce = new BEVector2();
 	
-	// Drag
-	damping = 0.995;	// Dampens velocity (1 = no damping, 0 = max damping)
-	
 	// Mass
-	inverseMass = 1;	// Better to keep inverse mass than mass for computations. (zero inverse mass = immoveable)
+	inverseMass = 1 / _mass;	// Better to keep inverse mass than mass for computations. (zero inverse mass = immoveable)
+	
+	// Drag
+	damping = _damping;			// Dampens velocity (1 = no damping, 0 = max damping)
 	
 	#region Getters/Setters
 	
@@ -85,6 +85,7 @@ function BEBox(_owner=other.id) constructor
 	static setMass = function(_mass)
 	{
 		if (_mass == 0) throw("Set mass error. Mass can't be 0!");
+		inverseMass = 1 / _mass;
 	}
 	
 	/// @func	getInverseMass();

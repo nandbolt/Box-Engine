@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "be_oBoxChild",
+  "name": "be_oBPPlayer",
   "spriteId": {
-    "name": "be_sBox",
-    "path": "sprites/be_sBox/be_sBox.yy",
+    "name": "be_sBPPlayer",
+    "path": "sprites/be_sBPPlayer/be_sBPPlayer.yy",
   },
   "solid": false,
   "visible": true,
@@ -27,11 +27,14 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "BE",
-    "path": "folders/Objects/BE.yy",
+    "name": "BoxPusher",
+    "path": "folders/Objects/BE/Demos/BoxPusher.yy",
   },
 }

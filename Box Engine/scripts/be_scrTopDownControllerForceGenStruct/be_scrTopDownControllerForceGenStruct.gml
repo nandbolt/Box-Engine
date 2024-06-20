@@ -3,7 +3,7 @@
 function BETopDownControllerForceGen() : BEForceGen() constructor
 {
 	controllerInput = new BEVector2();
-	controllerStrength = 100;
+	controllerStrength = 200;
 	
 	/// @func	updateForce({Struct.BEBox} box, {real} dt);
 	/// @desc	Applies controller forces to the box.

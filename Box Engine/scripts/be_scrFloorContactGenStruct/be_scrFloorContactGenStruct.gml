@@ -1,6 +1,6 @@
-/// @func	BEFloor();
+/// @func	BEFloorContactGen();
 /// @desc	A floor contact generator which generates a contact when a box touches the bottom of the screen.
-function BEFloor() : BEContactGen() constructor
+function BEFloorContactGen() : BEContactGen() constructor
 {
 	floorY = room_height;
 	
