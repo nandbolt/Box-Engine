@@ -97,13 +97,20 @@ window_set_size(1280, 720);
 surface_resize(application_surface, 1280, 720);
 
 // Init scene
-fgGravity = new BEGravityForceGen();
+//fgGravity = new BEGravityForceGen();
 fgController = new BETopDownControllerForceGen();
 cgTiles = new BETileContactGen();
-inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);
-inst2 = instance_create_layer(room_width * 0.7, room_height * 0.5, "Instances", be_oBoxChild);
+cgBoxes = new BEBoxContactGen();
+inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);	// Player
+inst1.image_blend = c_aqua;
+inst2 = instance_create_layer(room_width * 0.7, room_height * 0.8, "Instances", be_oBoxChild);
+inst3 = instance_create_layer(room_width * 0.7, room_height * 0.6, "Instances", be_oBoxChild);
+inst4 = instance_create_layer(room_width * 0.7, room_height * 0.4, "Instances", be_oBoxChild);
+//inst3 = instance_create_layer(room_width * 0.7, room_height * 0.3, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
+array_push(boxes, inst3.box);
+array_push(boxes, inst4.box);
 registry.add(inst1.box, fgController);
-registry.add(inst2.box, fgGravity);
 array_push(contactGens, cgTiles);
+array_push(contactGens, cgBoxes);

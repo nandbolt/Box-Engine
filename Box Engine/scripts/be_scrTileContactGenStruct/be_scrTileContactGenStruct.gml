@@ -11,7 +11,7 @@ function BETileContactGen() : BEContactGen() constructor
 	/// @param	{int}	contactIdx	The contact to add.
 	///	@param	{int}	limit		The max number of contacts in the array that can be written to.
 	/// @return	{int}				The number of contacts that have been written.
-	/// @desc	Fills the contact structure with a generated floor contact.
+	/// @desc	Fills the contact structure with a generated tile contact.
 	static addContact = function(_contactIdx, _limit)
 	{
 		var _restitution = 0.5;
@@ -65,6 +65,7 @@ function BETileContactGen() : BEContactGen() constructor
 						// Increment
 						_used++;
 						_contactIdx++;
+						if (_contactIdx >= array_length(contacts)) return _used;
 					}
 				}
 			}

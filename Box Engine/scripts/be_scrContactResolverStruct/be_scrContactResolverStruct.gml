@@ -37,5 +37,6 @@ function BEContactResolver(_iterations=1) constructor
 			// Increment
 			iterationsUsed++;
 		}
+		show_debug_message("Contact iterations used: " + string(iterationsUsed));
 	}
 }
