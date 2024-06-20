@@ -21,7 +21,7 @@ function BEContactResolver(_iterations=1) constructor
 			for (var _i = 0; _i < _numContacts; _i++)
 			{
 				var _sepVel = _contactArray[_i].calculateSeparatingVelocity();
-				if (_sepVel < _max)
+				if (_sepVel < _max && (_sepVel < 0 || _contactArray[_i].penetration > 0))
 				{
 					_max = _sepVel;
 					_maxIndex = _i;
@@ -33,6 +33,31 @@ function BEContactResolver(_iterations=1) constructor
 			
 			// Resolve contact
 			_contactArray[_maxIndex].resolve(_dt);
+			
+			// Update the interpenetrations for all particles
+			var _move = _contactArray[_maxIndex].boxMovement;
+			for (var _i = 0; _i < _numContacts; _i++)
+			{
+				if (_contactArray[_i].boxes[0] == _contactArray[_maxIndex].boxes[0])
+				{
+					_contactArray[_i].penetration -= _move[0].dotProductVector(_contactArray[_i].normal);
+				}
+				else if (_contactArray[_i].boxes[0] == _contactArray[_maxIndex].boxes[1])
+				{
+					_contactArray[_i].penetration -= _move[1].dotProductVector(_contactArray[_i].normal);
+				}
+				if (!is_undefined(_contactArray[_i].boxes[1]))
+				{
+					if (_contactArray[_i].boxes[1] == _contactArray[_maxIndex].boxes[0])
+					{
+						_contactArray[_i].penetration -= _move[0].dotProductVector(_contactArray[_i].normal);
+					}
+					else if (_contactArray[_i].boxes[1] == _contactArray[_maxIndex].boxes[1])
+					{
+						_contactArray[_i].penetration -= _move[1].dotProductVector(_contactArray[_i].normal);
+					}
+				}
+			}
 			
 			// Increment
 			iterationsUsed++;

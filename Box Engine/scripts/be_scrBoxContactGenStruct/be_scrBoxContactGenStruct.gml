@@ -19,20 +19,15 @@ function BEBoxContactGen() : BEContactGen() constructor
 			if (_used >= _limit) break;
 			
 			// Check for penetration
-			var _collision = false, _owner = boxes[_i].owner;
+			var _inst = noone, _owner = boxes[_i].owner;
 			with (_owner)
 			{
-				_collision = place_meeting(x, y, be_oBox);
+				if (place_meeting(x, y, be_oBox)) _inst = instance_place(x, y, be_oBox);
 			}
-			if (_collision)
+			if (_inst != noone)
 			{
 				// We have a collision (so fill out contact data)
-				var _inst = noone;
-				with (_owner)
-				{
-					_inst = instance_place(x, y, be_oBox);
-				}
-						
+					
 				// Calculate normal
 				var _dx = _owner.x - _inst.x, _dy = _owner.y - _inst.y;
 				var _normal = new BEVector2();
@@ -50,14 +45,16 @@ function BEBoxContactGen() : BEContactGen() constructor
 				
 				// Set everything but interpenetration
 				contacts[_contactIdx].restitution = _restitution;
-				contacts[_contactIdx].boxes[0] = boxes[_i];
+				contacts[_contactIdx].boxes[0] = _owner.box;
 				contacts[_contactIdx].boxes[1] = _inst.box;
 				
 				// Calculate interpenetration
-				if (_normal.x > 0) contacts[_contactIdx].penetration = -_inst.bbox_right + _owner.bbox_left;
-				else if (_normal.x < 0) contacts[_contactIdx].penetration = -_owner.bbox_right + _inst.bbox_left;
-				else if (_normal.y > 0) contacts[_contactIdx].penetration = -_inst.bbox_bottom + _owner.bbox_top;
-				else contacts[_contactIdx].penetration = -_owner.bbox_bottom + _inst.bbox_top;
+				if (_normal.x > 0) contacts[_contactIdx].penetration = _inst.bbox_right - _owner.bbox_left;
+				else if (_normal.x < 0) contacts[_contactIdx].penetration = _owner.bbox_right - _inst.bbox_left;
+				else if (_normal.y > 0) contacts[_contactIdx].penetration = _inst.bbox_bottom - _owner.bbox_top;
+				else contacts[_contactIdx].penetration = _owner.bbox_bottom - _inst.bbox_top;
+				contacts[_contactIdx].penetration += 0.01;
+				//contacts[_contactIdx].penetration *= -1;
 				show_debug_message(contacts[_contactIdx].penetration);
 				
 				// Increment

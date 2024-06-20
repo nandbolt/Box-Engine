@@ -6,7 +6,7 @@ Keeps track of and updates all boxes in the simulation.
 
 // World
 boxes = [];											// All of the boxes in the simulation.
-maxContacts = 4;									// The given number of contacts per frame the simulation can handle.
+maxContacts = 8;									// The given number of contacts per frame the simulation can handle.
 iterations = maxContacts * 2;						// The number of contact iterations used.
 calculateIterations	= (iterations == 0);			// Whether the number of iterations to for contact resolver should be calculated every frame.
 registry = new BEForceRegistry();					// The force registry.
@@ -104,8 +104,11 @@ cgBoxes = new BEBoxContactGen();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);	// Player
 inst1.image_blend = c_aqua;
 inst2 = instance_create_layer(room_width * 0.7, room_height * 0.8, "Instances", be_oBoxChild);
+//inst2.box.setInverseMass(0.9);
 inst3 = instance_create_layer(room_width * 0.7, room_height * 0.6, "Instances", be_oBoxChild);
+//inst3.box.setInverseMass(0.1);
 inst4 = instance_create_layer(room_width * 0.7, room_height * 0.4, "Instances", be_oBoxChild);
+//inst4.box.setInverseMass(0);
 //inst3 = instance_create_layer(room_width * 0.7, room_height * 0.3, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);

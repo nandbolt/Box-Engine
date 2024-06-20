@@ -146,11 +146,14 @@ function BEBox(_owner=other.id) constructor
 		owner.y += velocity.y * _dt;
 		
 		// Calculate acceleration
-		var _resultingAccel = acceleration.getCopy();
-		_resultingAccel.addScaledVector(netForce, inverseMass);
+		//var _resultingAccel = acceleration.getCopy();
+		//_resultingAccel.addScaledVector(netForce, inverseMass);
+		acceleration.set();
+		acceleration.addScaledVector(netForce, inverseMass);
 		
 		// Update velocity
-		velocity.addScaledVector(_resultingAccel, _dt);
+		//velocity.addScaledVector(_resultingAccel, _dt);
+		velocity.addScaledVector(acceleration, _dt);
 		
 		// Apply drag
 		velocity.scale(power(damping, _dt));

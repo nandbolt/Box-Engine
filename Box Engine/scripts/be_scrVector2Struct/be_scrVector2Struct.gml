@@ -109,6 +109,14 @@ function BEVector2(_x=0, _y=0) constructor
 		y += _v.y;
 	}
 	
+	/// @func	subtractVector({Struct.BEVector2} v);
+	/// @desc	Subtracts a vector from the vector.
+	static subtractVector = function(_v)
+	{
+		x -= _v.x;
+		y -= _v.y;
+	}
+	
 	/// @func	addScaled({real} x, {real} y, {real} scalar);
 	/// @desc	Adds a scaled vector to the vector.
 	static addScaled = function(_x, _y, _scalar)

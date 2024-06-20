@@ -14,7 +14,7 @@ function BETileContactGen() : BEContactGen() constructor
 	/// @desc	Fills the contact structure with a generated tile contact.
 	static addContact = function(_contactIdx, _limit)
 	{
-		var _restitution = 0.5;
+		var _restitution = 0;
 		
 		// Loop through boxes
 		var _used = 0;
@@ -59,8 +59,16 @@ function BETileContactGen() : BEContactGen() constructor
 						contacts[_contactIdx].boxes[1] = undefined;
 				
 						// Calculate interpenetration
-						if (_normal.y != 0) contacts[_contactIdx].penetration = halfTileSize - abs(_dy);
-						else contacts[_contactIdx].penetration = halfTileSize - abs(_dx);
+						//if (_normal.y != 0) contacts[_contactIdx].penetration = halfTileSize - abs(_dy);
+						//else contacts[_contactIdx].penetration = halfTileSize - abs(_dx);
+						
+						// Calculate interpenetration
+						if (_normal.x > 0) contacts[_contactIdx].penetration = _tx + halfTileSize - _x;
+						else if (_normal.x < 0) contacts[_contactIdx].penetration = _x - _tx + halfTileSize;
+						else if (_normal.y > 0) contacts[_contactIdx].penetration = _ty + halfTileSize - _y;
+						else contacts[_contactIdx].penetration = _y - _ty + halfTileSize;
+						//contacts[_contactIdx].penetration *= -1;
+						show_debug_message(contacts[_contactIdx].penetration);
 				
 						// Increment
 						_used++;
