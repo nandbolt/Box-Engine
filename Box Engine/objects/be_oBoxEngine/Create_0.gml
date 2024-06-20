@@ -97,13 +97,13 @@ window_set_size(1280, 720);
 surface_resize(application_surface, 1280, 720);
 
 // Init scene
-fgGravity1 = new BEGravityForceGen();
-fgGravity2 = new BEGravityForceGen();
+fgGravity = new BEGravityForceGen();
+fgController = new BETopDownControllerForceGen();
 cgFloor = new BEFloor();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);
 inst2 = instance_create_layer(room_width * 0.7, room_height * 0.5, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
-registry.add(inst1.box, fgGravity1);
-registry.add(inst2.box, fgGravity2);
+registry.add(inst1.box, fgController);
+registry.add(inst2.box, fgGravity);
 array_push(contactGens, cgFloor);
