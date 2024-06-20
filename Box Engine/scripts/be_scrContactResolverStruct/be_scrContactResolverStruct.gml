@@ -28,6 +28,9 @@ function BEContactResolver(_iterations=1) constructor
 				}
 			}
 			
+			// Return if nothing to resolve
+			if (_maxIndex == _numContacts) break;
+			
 			// Resolve contact
 			_contactArray[_maxIndex].resolve(_dt);
 			

@@ -7,6 +7,7 @@
     {"id":{"name":"be_oBoxEngine","path":"objects/be_oBoxEngine/be_oBoxEngine.yy",},"order":0,},
     {"id":{"name":"be_oBoxChild","path":"objects/be_oBoxChild/be_oBoxChild.yy",},"order":2,},
     {"id":{"name":"be_scrForceGenStruct","path":"scripts/be_scrForceGenStruct/be_scrForceGenStruct.yy",},"order":2,},
+    {"id":{"name":"be_scrTileContactGenStruct","path":"scripts/be_scrTileContactGenStruct/be_scrTileContactGenStruct.yy",},"order":1,},
     {"id":{"name":"be_oBox","path":"objects/be_oBox/be_oBox.yy",},"order":1,},
     {"id":{"name":"be_scrGravityForceGenStruct","path":"scripts/be_scrGravityForceGenStruct/be_scrGravityForceGenStruct.yy",},"order":0,},
     {"id":{"name":"be_scrVector2Struct","path":"scripts/be_scrVector2Struct/be_scrVector2Struct.yy",},"order":0,},

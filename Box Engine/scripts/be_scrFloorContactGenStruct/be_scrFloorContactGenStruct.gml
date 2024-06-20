@@ -3,8 +3,6 @@
 function BEFloor() : BEContactGen() constructor
 {
 	floorY = room_height;
-	boxes = be_oBoxEngine.boxes;
-	contacts = be_oBoxEngine.contacts;
 	
 	/// @func	addContact({int} contactIdx, {int} limit);
 	/// @param	{int}	contactIdx	The contact to add.

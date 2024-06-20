@@ -10,7 +10,7 @@ maxContacts = 4;									// The given number of contacts per frame the simulatio
 iterations = maxContacts * 2;						// The number of contact iterations used.
 calculateIterations	= (iterations == 0);			// Whether the number of iterations to for contact resolver should be calculated every frame.
 registry = new BEForceRegistry();					// The force registry.
-resolver = new BEContactResolver(4);				// The contact resolver.
+resolver = new BEContactResolver(iterations);		// The contact resolver.
 contactGens = [];									// The contact generators.
 contacts = array_create(maxContacts, undefined);	// The list of contacts.
 for (var _i = 0; _i < array_length(contacts); _i++)	// Init list of contacts.
@@ -99,11 +99,11 @@ surface_resize(application_surface, 1280, 720);
 // Init scene
 fgGravity = new BEGravityForceGen();
 fgController = new BETopDownControllerForceGen();
-cgFloor = new BEFloor();
+cgTiles = new BETileContactGen();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);
 inst2 = instance_create_layer(room_width * 0.7, room_height * 0.5, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
 registry.add(inst1.box, fgController);
 registry.add(inst2.box, fgGravity);
-array_push(contactGens, cgFloor);
+array_push(contactGens, cgTiles);

@@ -16,7 +16,7 @@
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1366,"hview":768,"xport":0,"yport":0,"wport":1366,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
   ],
   "layers": [
-    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles_1","tilesetId":{"name":"be_tsCollision","path":"tilesets/be_tsCollision/be_tsCollision.yy",},"x":0,"y":0,"tiles":{"TileDataFormat":1,"SerialiseWidth":20,"SerialiseHeight":12,"TileCompressedData":[
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"CollisionTiles","tilesetId":{"name":"be_tsCollision","path":"tilesets/be_tsCollision/be_tsCollision.yy",},"x":0,"y":0,"tiles":{"TileDataFormat":1,"SerialiseWidth":20,"SerialiseHeight":12,"TileCompressedData":[
 -21,1,-18,-2147483648,-2,1,-16,-2147483648,4,1,-2147483648,1,1,-3,-2147483648,1,1,-7,-2147483648,1,
 0,-6,-2147483648,-2,1,-2,-2147483648,-3,1,-13,-2147483648,-2,1,-2,-2147483648,3,0,1,0,-13,
 -2147483648,-2,1,-3,-2147483648,1,0,-14,-2147483648,-2,1,-14,-2147483648,8,0,1,-2147483648,-2147483648,1,1,
