@@ -110,10 +110,12 @@ inst3 = instance_create_layer(room_width * 0.7, room_height * 0.6, "Instances", 
 inst4 = instance_create_layer(room_width * 0.7, room_height * 0.4, "Instances", be_oBoxChild);
 //inst4.box.setInverseMass(0);
 //inst3 = instance_create_layer(room_width * 0.7, room_height * 0.3, "Instances", be_oBoxChild);
+fgSpring = new BESpringForceGen(inst1.box, 1, 0);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
 array_push(boxes, inst3.box);
 array_push(boxes, inst4.box);
 registry.add(inst1.box, fgController);
+registry.add(inst2.box, fgSpring);
 array_push(contactGens, cgTiles);
-array_push(contactGens, cgBoxes);
+//array_push(contactGens, cgBoxes);

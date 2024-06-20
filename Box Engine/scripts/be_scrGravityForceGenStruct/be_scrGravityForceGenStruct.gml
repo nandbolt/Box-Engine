@@ -1,5 +1,5 @@
-/// @func BEGravityForceGen({real} x, {real} y);
-/// @desc A gravity force generator. Applies the force of gravity.
+/// @func	BEGravityForceGen({real} x, {real} y);
+/// @desc	A gravity force generator. Applies the force of gravity.
 function BEGravityForceGen(_x=0, _y=500) : BEForceGen() constructor
 {
 	// Gravity
