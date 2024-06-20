@@ -99,6 +99,7 @@ surface_resize(application_surface, 1280, 720);
 // Init scene
 //fgGravity = new BEGravityForceGen();
 fgController = new BETopDownControllerForceGen();
+fgBoxSpring = new BEBoxSpringForceGen();
 cgTiles = new BETileContactGen();
 cgBoxes = new BEBoxContactGen();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);	// Player
@@ -110,12 +111,14 @@ inst3 = instance_create_layer(room_width * 0.7, room_height * 0.6, "Instances", 
 inst4 = instance_create_layer(room_width * 0.7, room_height * 0.4, "Instances", be_oBoxChild);
 //inst4.box.setInverseMass(0);
 //inst3 = instance_create_layer(room_width * 0.7, room_height * 0.3, "Instances", be_oBoxChild);
-fgSpring = new BESpringForceGen(inst1.box, 1, 0);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
 array_push(boxes, inst3.box);
 array_push(boxes, inst4.box);
 registry.add(inst1.box, fgController);
-registry.add(inst2.box, fgSpring);
+//registry.add(inst1.box, fgBoxSpring);
+//registry.add(inst2.box, fgBoxSpring);
+//registry.add(inst3.box, fgBoxSpring);
+//registry.add(inst4.box, fgBoxSpring);
 array_push(contactGens, cgTiles);
-//array_push(contactGens, cgBoxes);
+array_push(contactGens, cgBoxes);

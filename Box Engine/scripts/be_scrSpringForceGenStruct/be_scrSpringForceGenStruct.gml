@@ -1,5 +1,5 @@
 /// @func	BESpringForceGen();
-
+/// @desc	A spring force generator. Applies the force of a spring to a box.
 function BESpringForceGen(_otherBox=undefined, _springConstant=1, _restLength=16) : BEForceGen() constructor
 {
 	otherBox = _otherBox;

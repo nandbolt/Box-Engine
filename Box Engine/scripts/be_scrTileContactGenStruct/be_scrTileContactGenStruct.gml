@@ -14,7 +14,7 @@ function BETileContactGen() : BEContactGen() constructor
 	/// @desc	Fills the contact structure with a generated tile contact.
 	static addContact = function(_contactIdx, _limit)
 	{
-		var _restitution = 0;
+		var _restitution = 0.5;
 		
 		// Loop through boxes
 		var _used = 0;

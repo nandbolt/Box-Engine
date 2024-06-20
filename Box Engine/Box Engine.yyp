@@ -20,6 +20,7 @@
     {"id":{"name":"be_scrBoxContactGenStruct","path":"scripts/be_scrBoxContactGenStruct/be_scrBoxContactGenStruct.yy",},"order":2,},
     {"id":{"name":"be_sBox","path":"sprites/be_sBox/be_sBox.yy",},"order":0,},
     {"id":{"name":"be_scrFloorContactGenStruct","path":"scripts/be_scrFloorContactGenStruct/be_scrFloorContactGenStruct.yy",},"order":0,},
+    {"id":{"name":"be_scrBoxSpringForceGenStruct","path":"scripts/be_scrBoxSpringForceGenStruct/be_scrBoxSpringForceGenStruct.yy",},"order":3,},
     {"id":{"name":"be_scrBoxStruct","path":"scripts/be_scrBoxStruct/be_scrBoxStruct.yy",},"order":1,},
     {"id":{"name":"be_scrContactStruct","path":"scripts/be_scrContactStruct/be_scrContactStruct.yy",},"order":5,},
     {"id":{"name":"be_rDemo","path":"rooms/be_rDemo/be_rDemo.yy",},"order":0,},
