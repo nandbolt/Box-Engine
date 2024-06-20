@@ -15,6 +15,7 @@
     {"id":{"name":"be_scrForceRegistryStruct","path":"scripts/be_scrForceRegistryStruct/be_scrForceRegistryStruct.yy",},"order":4,},
     {"id":{"name":"be_sCollisionTiles","path":"sprites/be_sCollisionTiles/be_sCollisionTiles.yy",},"order":1,},
     {"id":{"name":"be_sBox","path":"sprites/be_sBox/be_sBox.yy",},"order":0,},
+    {"id":{"name":"be_scrFloorContactGenStruct","path":"scripts/be_scrFloorContactGenStruct/be_scrFloorContactGenStruct.yy",},"order":0,},
     {"id":{"name":"be_scrBoxStruct","path":"scripts/be_scrBoxStruct/be_scrBoxStruct.yy",},"order":1,},
     {"id":{"name":"be_scrContactStruct","path":"scripts/be_scrContactStruct/be_scrContactStruct.yy",},"order":5,},
     {"id":{"name":"be_rDemo","path":"rooms/be_rDemo/be_rDemo.yy",},"order":0,},

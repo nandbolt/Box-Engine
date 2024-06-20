@@ -13,6 +13,11 @@ registry = new BEForceRegistry();					// The force registry.
 resolver = new BEContactResolver(4);				// The contact resolver.
 contactGens = [];									// The contact generators.
 contacts = array_create(maxContacts, undefined);	// The list of contacts.
+for (var _i = 0; _i < array_length(contacts); _i++)	// Init list of contacts.
+{
+	contacts[_i] = new BEContact();
+}
+nextContactIdx = 0;									// The current contact write position.
 
 #region Functions
 
@@ -35,17 +40,15 @@ generateContacts = function()
 	var _limit = maxContacts;
 	
 	// Init next contact
-	var _nextContactIdx = 0;
-	var _nextContact = contacts[_nextContactIdx];
+	nextContactIdx = 0;
 	
 	// Loop through contact generators
 	for (var _i = 0; _i < array_length(contactGens); _i++)
 	{
 		// Add contact to contact generator (???)
-		var _used = contactGens[_i].addContact(_nextContact, _limit);
+		var _used = contactGens[_i].addContact(nextContactIdx, _limit);
 		_limit -= _used;
-		_nextContactIdx += _used;
-		_nextContact = contacts[_nextContactIdx];
+		nextContactIdx += _used;
 		
 		// Break if ran out of contacts to fill, meaning we're missing contacts.
 		if (_limit <= 0) break;
@@ -80,7 +83,7 @@ runPhysics = function(_dt)
 	var _usedContacts = generateContacts();
 	
 	// Process contacts
-	if (_usedContacts)
+	if (_usedContacts > 0)
 	{
 		if (calculateIterations) resolver.setIterations(_usedContacts * 2);
 		resolver.resolveContacts(contacts, _usedContacts, _dt);
@@ -96,9 +99,11 @@ surface_resize(application_surface, 1280, 720);
 // Init scene
 fgGravity1 = new BEGravityForceGen();
 fgGravity2 = new BEGravityForceGen();
+cgFloor = new BEFloor();
 inst1 = instance_create_layer(room_width * 0.3, room_height * 0.5, "Instances", be_oBoxChild);
 inst2 = instance_create_layer(room_width * 0.7, room_height * 0.5, "Instances", be_oBoxChild);
 array_push(boxes, inst1.box);
 array_push(boxes, inst2.box);
 registry.add(inst1.box, fgGravity1);
 registry.add(inst2.box, fgGravity2);
+array_push(contactGens, cgFloor);

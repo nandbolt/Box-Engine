@@ -12,6 +12,10 @@ function BEContact(_box1=undefined, _box2=undefined) constructor
 	/// @desc	Resolves contact, both for velocity and interpenetration.
 	static resolve = function(_dt)
 	{
+		// Return if no contacts
+		if (is_undefined(boxes[0])) return;
+		
+		// Resolve
 		resolveVelocity(_dt);
 		resolveInterpenetration(_dt);
 	}
@@ -72,6 +76,32 @@ function BEContact(_box1=undefined, _box2=undefined) constructor
 	/// @desc	Handles interpenetration for collision.
 	static resolveInterpenetration = function(_dt)
 	{
+		// Return if no interpenetration
+		if (penetration <= 0) return;
 		
+		// Movement is based on inverse mass, so calculate total
+		var _totalInverseMass = boxes[0].getInverseMass();
+		if (!is_undefined(boxes[1])) _totalInverseMass += boxes[1].getInverseMass();
+		
+		// Return if infinite mass
+		if (_totalInverseMass <= 0) return;
+		
+		// Find penetration resolution per unit of inverse mass
+		var _factor = penetration / _totalInverseMass;
+		var _movePerIMass = new BEVector2(normal.x * _factor, normal.y * _factor);
+		
+		// Apply interpenetration resolution
+		var _prevPosition = boxes[0].getPosition(), _inverseMass = boxes[0].getInverseMass();
+		var _px = _prevPosition.x + _movePerIMass.x * _inverseMass;
+		var _py = _prevPosition.y + _movePerIMass.y * _inverseMass;
+		boxes[0].setPosition(_px, _py);
+		if (!is_undefined(boxes[1]))
+		{
+			_prevPosition = boxes[1].getPosition();
+			_inverseMass = boxes[1].getInverseMass();
+			_px = _prevPosition.x + _movePerIMass.x * _inverseMass;
+			_py = _prevPosition.y + _movePerIMass.y * _inverseMass;
+			boxes[1].setPosition(_px, _py);
+		}
 	}
 }
