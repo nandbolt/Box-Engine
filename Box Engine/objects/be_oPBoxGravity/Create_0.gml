@@ -2,7 +2,7 @@
 event_inherited();
 
 // Set box
-box.setMass(2);
+box.setMass(4);
 box.setDamping(0.1);
 
 // Add to box engine
@@ -10,4 +10,5 @@ with (be_oBoxEngine)
 {
 	array_push(boxes, other.box);
 	registry.add(other.box, be_oPWorld.fgGravity);
+	registry.add(other.box, be_oPWorld.fgBuoyancy);
 }

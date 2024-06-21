@@ -73,7 +73,6 @@ function BETileContactGen(_tileLayer=layer_tilemap_get_id("CollisionTiles"), _ti
 						else if (_normal.y > 0) contacts[_contactIdx].penetration = _ty + halfTileSize - _y;
 						else contacts[_contactIdx].penetration = _y - _ty + halfTileSize;
 						//contacts[_contactIdx].penetration *= -1;
-						show_debug_message(contacts[_contactIdx].penetration);
 				
 						// Increment
 						_used++;

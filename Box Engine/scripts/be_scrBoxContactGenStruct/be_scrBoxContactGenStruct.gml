@@ -55,7 +55,6 @@ function BEBoxContactGen() : BEContactGen() constructor
 				else contacts[_contactIdx].penetration = _owner.bbox_bottom - _inst.bbox_top;
 				contacts[_contactIdx].penetration += 0.01;
 				//contacts[_contactIdx].penetration *= -1;
-				show_debug_message(contacts[_contactIdx].penetration);
 				
 				// Increment
 				_used++;

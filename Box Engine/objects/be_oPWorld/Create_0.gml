@@ -1,5 +1,5 @@
 // Debug overlay
-show_debug_overlay(true);
+//show_debug_overlay(true);
 
 // Init display
 window_set_size(1280, 720);
@@ -13,6 +13,7 @@ boxEngine = instance_create_layer(0, 0, "Instances", be_oBoxEngine);
 cgTiles = new BETileContactGen();
 cgBoxes = new BEBoxContactGen();
 fgGravity = new BEGravityForceGen();
+fgBuoyancy = new BEBuoyancyForceGen();
 with (boxEngine)
 {
 	array_push(contactGens, other.cgTiles);
