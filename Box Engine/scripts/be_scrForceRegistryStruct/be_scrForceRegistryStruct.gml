@@ -5,6 +5,10 @@ function BEForceRegistry() constructor
 	// Force registrations
 	registrations = [];
 	
+	/// @func	getRegistrationCount();
+	/// @desc	Returns how many force generators are in the registry.
+	static getRegistrationCount = function(){ return array_length(registrations); }
+	
 	/// @func	add({Struct.BEBox} box, {Struct.BEForceGen} forceGen);
 	static add = function(_box, _forceGen)
 	{

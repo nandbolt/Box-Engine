@@ -1,5 +1,9 @@
+// Debug overlay
+show_debug_overlay(true);
+
 // Init display
 window_set_size(1280, 720);
+display_set_gui_size(1280, 720);
 surface_resize(application_surface, 1280, 720);
 
 // Create box engine

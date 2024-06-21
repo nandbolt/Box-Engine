@@ -8,6 +8,10 @@ function BEContactResolver(_iterations=1) constructor
 	/// @func	setIterations({int} iterations);
 	static setIterations = function(_iterations){ iterations = _iterations; }
 	
+	/// @func	getIterationsUsed();
+	/// @desc	Returns how many iterations of the contact resolver were used.
+	static getIterationsUsed = function(){ return iterationsUsed; }
+	
 	/// @func	resolveContacts({array} contactArray, {int} numContacts, {real} dt);
 	/// @desc	Resolves a set of contacts for both velocity and interpenetration.
 	static resolveContacts = function(_contactArray, _numContacts, _dt)
