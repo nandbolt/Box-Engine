@@ -1,6 +1,13 @@
 /// @desc Init Simulation
 
 /*
+Box Engine
+created by nandbolt
+(Box Engine GitHub: https://github.com/nandbolt/Box-Engine)
+
+Heavily utilized the book "Game Physics: Engine Development" by Ian Millington to develop this engine.
+(Ian Millington's Cyclone engine source code: https://github.com/idmillington/cyclone-physics/tree/master)
+
 Keeps track of and updates all boxes in the simulation.
 */
 
