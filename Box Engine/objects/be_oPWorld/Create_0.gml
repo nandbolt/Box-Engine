@@ -1,5 +1,5 @@
 // Debug overlay
-//show_debug_overlay(true);
+show_debug_overlay(true);
 
 // Init display
 window_set_size(1280, 720);

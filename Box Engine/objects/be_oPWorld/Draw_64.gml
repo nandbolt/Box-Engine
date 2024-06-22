@@ -1,5 +1,4 @@
 var _x = 0, _y = 32;
-exit;
 
 // Background
 draw_set_color(c_black);
